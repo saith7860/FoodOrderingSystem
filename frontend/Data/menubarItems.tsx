@@ -1,1 +1,0 @@
-export const menuItems=["Pizza","Burger","Zarda","Handi","Pulao","Raita/Salad"];
