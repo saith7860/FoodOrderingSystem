@@ -22,8 +22,8 @@ const Home = () => {
       key={item.id}
       id={item.id}
       title={item.title}
-      description={item.Description}
-      imgsrc={item.imageSrc}
+      description={item.description}
+      imgsrc={item.imagesrc}
       price={item.price}
     />
   ))}

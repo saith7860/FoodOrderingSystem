@@ -20,7 +20,7 @@ const ProductPage = () => {
       
       {/* Image */}
       <div className="flex justify-center">
-        <img src={product.imageSrc} className="h-100  object-contain " />
+        <img src={product.imagesrc} className="h-100  object-contain " />
       </div>
 
       {/* Title */}
@@ -28,7 +28,7 @@ const ProductPage = () => {
 
       {/* Description */}
       <p className="text-gray-500 text-sm mt-3">
-        {product.Description}
+        {product.description}
       </p>
 
       {/* Quantity Section */}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
 import menuCards from "../Data/menuCards";
+
 //type for menucard props
 type MenuCardsProps = {
   title: string;
@@ -10,18 +11,27 @@ type MenuCardsProps = {
   imgsrc: string;
   price: number;
   id:number
-  quantity:number
 }
-const { cart, setCart } = useContext(CartContext)
-const handleCartClick=(cardId:number)=>{
+const MenuCards = ({ title, description, imgsrc, price,id }: MenuCardsProps) => {
+    const navigate=useNavigate();
+    const context=useContext(CartContext);
+     if (!context) {
+    throw new Error("CartContext not found");
+  }
+  const {cart,setCart}=context;
+    console.log(cart,setCart);
+    const handleCartClick=(cardId:number)=>{
 console.log(cardId);
 //find product from array
 const product=menuCards.find(item=>item.id===cardId);
+if (!product) {
+  return
+}
 //find if product already exist in the cart
-const existing=cart.find((item:MenuCardsProps)=>item.id==cardId);
+const existing=cart.find(item=>item.id==cardId);
 if (existing) {
   //incrase quantity
-  const updateProduct=cart.map((item:MenuCardsProps)=>
+  const updateProduct=cart.map(item=>
   (
     item.id==cardId?{...item,quantity:item.quantity+1}:item
   ))
@@ -29,11 +39,16 @@ if (existing) {
 }
  else {
     // add new item
-    setCart([...cart, { ...product, quantity: 1 }])
+    setCart([...cart,  {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      imagesrc: product.imagesrc,
+      description: product.description,
+      quantity: 1
+    }])
   }
 }
-const MenuCards = ({ title, description, imgsrc, price,id }: MenuCardsProps) => {
-    const navigate=useNavigate();
   return (
     <div   className="bg-white rounded-2xl shadow-md p-3">
       
