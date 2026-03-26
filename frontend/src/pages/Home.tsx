@@ -20,6 +20,7 @@ const Home = () => {
   {menuCards.map((item) => (
     <MenuCards
       key={item.id}
+      id={item.id}
       title={item.title}
       description={item.Description}
       imgsrc={item.imageSrc}
