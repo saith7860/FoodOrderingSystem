@@ -1,5 +1,4 @@
 import { createContext,useState,type ReactNode } from "react";
-import { useContext } from "react";
 import type { JSX } from "react";
 interface CartItem{
     id:number
