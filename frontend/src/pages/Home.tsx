@@ -8,8 +8,11 @@ import menuCards from "../Data/menuCards"
 const Home = () => {
   return (
     <div className="pt-6 p-3">
+      {/* NAVBAR */}
     <NavBar resturantName="Dhaka Biryani"/>
+    {/* SEARCHBAR */}
     <SearchBar/>
+    {/* MENU ITEMS CARD */}
     <div className="flex pt-6 gap-3 overflow-x-auto whitespace-nowrap">
   {menuItems.map((item, index) => (
     <MenuBar key={index} label={item} />

@@ -1,8 +1,8 @@
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
-import { CartContext } from "../CartContext";
-import menuCards from "../Data/menuCards";
+// import { useContext } from "react";
+// import { CartContext } from "../CartContext";
+// import menuCards from "../Data/menuCards";
 
 //type for menucard props
 type MenuCardsProps = {
@@ -14,41 +14,43 @@ type MenuCardsProps = {
 }
 const MenuCards = ({ title, description, imgsrc, price,id }: MenuCardsProps) => {
     const navigate=useNavigate();
-    const context=useContext(CartContext);
-     if (!context) {
-    throw new Error("CartContext not found");
-  }
-  const {cart,setCart}=context;
-    console.log(cart,setCart);
-    const handleCartClick=(cardId:number)=>{
-console.log(cardId);
-//find product from array
-const product=menuCards.find(item=>item.id===cardId);
-if (!product) {
-  return
-}
-//find if product already exist in the cart
-const existing=cart.find(item=>item.id==cardId);
-if (existing) {
-  //incrase quantity
-  const updateProduct=cart.map(item=>
-  (
-    item.id==cardId?{...item,quantity:item.quantity+1}:item
-  ))
-  setCart(updateProduct)
-}
- else {
-    // add new item
-    setCart([...cart,  {
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      imagesrc: product.imagesrc,
-      description: product.description,
-      quantity: 1
-    }])
-  }
-}
+  //   const context=useContext(CartContext);
+  //    if (!context) {
+  //   throw new Error("CartContext not found");
+  // }
+
+    // console.log(cart,setCart);
+// Handle click on add to cart button 
+// const handleCartClick=(cardId:number)=>{
+// console.log(cardId);
+// //find product from array
+// const product=menuCards.find(item=>item.id===cardId);
+// if (!product) {
+//   return
+// }
+// //find if product already exist in the cart
+// const existing=cart.find(item=>item.id==cardId);
+// if (existing) {
+//   //incrase quantity
+//   const updateProduct=cart.map(item=>
+//   (
+//     item.id==cardId?{...item,quantity:item.quantity+1}:item
+//   ))
+//   setCart(updateProduct)
+// }
+//  else {
+//     // add new item
+//     setCart([...cart,  {
+//       id: product.id,
+//       title: product.title,
+//       price: product.price,
+//       imagesrc: product.imagesrc,
+//       description: product.description,
+//       quantity: 1
+//     }])
+//   }
+// }
+
   return (
     <div   className="bg-white rounded-2xl shadow-md p-3">
       
@@ -73,7 +75,7 @@ if (existing) {
           </span>
 
           {/* Plus icon */}
-          <button onClick={()=>handleCartClick(id)} className="bg-red-400 text-white shadow-lg  rounded-lg">
+          <button onClick={() => navigate(`/product/${id}`)}className="bg-red-400 text-white shadow-lg  rounded-lg">
             <Plus size={22}/>
           </button>
         </div>

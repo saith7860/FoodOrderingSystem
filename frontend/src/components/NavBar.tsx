@@ -1,13 +1,14 @@
 import { ShoppingCartIcon } from "lucide-react";
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
+import { Link } from "react-router";
 type NavBarProps = {
   resturantName: string;
 };
 const NavBar = ({ resturantName }: NavBarProps) => {
   const { cart } = useContext(CartContext)!;
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  console.log(cart.length);
+  // console.log(cart.length);
 
   return (
     <nav>
@@ -18,20 +19,22 @@ const NavBar = ({ resturantName }: NavBarProps) => {
             Order Your Favourite Food
           </h6>
         </div>
+        <Link to='/cart'>
         <div className="relative">
           {/* Cart Icon */}
           <ShoppingCartIcon
             size={35}
-            className={`${cart.length > 0 ? "text-red-500" : "text-black"}`}
+            className={`${totalItems > 0 ? "text-red-500" : "text-black"}`}
           />
 
           {/* Badge */}
-          {cart.length > 0 && (
+          {totalItems > 0 && (
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full animate-bounce">
               {totalItems}
             </span>
           )}
         </div>
+        </Link>
       </div>
     </nav>
   );

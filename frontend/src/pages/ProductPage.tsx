@@ -1,20 +1,68 @@
 import { useParams,Link } from "react-router";
+import { useContext } from "react";
+import { useNavigate } from "react-router";
+import { CartContext } from "../CartContext";
 import { useState } from "react";
 import menuCards from "../Data/menuCards";
 const ProductPage = () => {
   const { id } = useParams();
-
-  // 🔥 Convert id to numberss
+   const navigate=useNavigate();
+  // Convert id to numberss
   const productId = Number(id);
-  // 🔥 Find product
+  //  Find product
   const product = menuCards.find(item => item.id === productId);
-
+//set quantity
   const [quantity, setQuantity] = useState(1);
 
   if (!product) {
     return <h2>Product not found</h2>;
   }
+  const {cart,setCart}=useContext(CartContext)!;
+// handleClick funtions
+const handleClick=(productId:number)=>{
+  console.log(productId);
+  setCart(prevCart => {
+  const existing = prevCart.find(item => item.id === productId);
 
+  if (existing) {
+    return prevCart.map(item =>
+      item.id === productId
+        ? { ...item, quantity: item.quantity + quantity }
+        : item
+    );
+  } else {
+    return [
+      ...prevCart,
+      {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        imagesrc: product.imagesrc,
+        description: product.description,
+        quantity: quantity
+      }
+    ];
+  }
+});
+  // if (existingProduct) {
+  //   console.log(existingProduct);
+  //   const updatedProduct={...existingProduct,quantity:existingProduct.quantity+quantity};
+  //   setCart(updatedProduct);
+  // }
+  // else{
+  // setCart([...cart,{
+  //    id: product.id,
+  //     title: product.title,
+  //     price: product.price,
+  //     imagesrc: product.imagesrc,
+  //     description: product.description,
+  //     quantity: quantity
+  // }])
+  // }
+navigate("/");
+
+}
+console.log(cart);
   return (
     <div className="p-4">
       
@@ -63,8 +111,8 @@ const ProductPage = () => {
           Rs.{product.price}
         </button>
 
-        <button className="bg-gray-800 text-white px-10 py-3 rounded-xl">
-          ORDER NOW
+        <button onClick={()=>handleClick(productId)} className="bg-gray-800 text-white px-10 py-3 rounded-xl">
+          ADD TO CART
         </button>
       </div>
       <div className="mt-8 flex justify-center underline text-2xl ">
