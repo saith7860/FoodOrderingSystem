@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { CartContext } from "../CartContext";
 import { useState } from "react";
 import menuCards from "../Data/menuCards";
+import toast from "react-hot-toast";
 const ProductPage = () => {
   const { id } = useParams();
    const navigate=useNavigate();
@@ -59,8 +60,13 @@ const handleClick=(productId:number)=>{
   //     quantity: quantity
   // }])
   // }
-navigate("/");
+toast.success("Product added to cart ✅", {
+  duration: 1000
+});
 
+setTimeout(() => {
+  navigate("/");
+}, 1000);
 }
 console.log(cart);
   return (
