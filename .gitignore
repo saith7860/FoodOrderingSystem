@@ -41,4 +41,3 @@ backend/node_modules
 .DS_Store
 
 #Excluding build directory
-public/
