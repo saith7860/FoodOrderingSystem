@@ -7,6 +7,7 @@ import ProductDes from "../components/cartpage/ProductDes";
 import ProdEditing from "../components/cartpage/ProdEditing";
 import { Link } from "react-router";
 import ExpMenu from "../components/cartpage/ExpMenu";
+import ReviewPayment from "../components/cartpage/ReviewPayment";
 const CartPage = () => {
     const {cart}=useContext(CartContext)!;
     // cart empty condition
@@ -36,6 +37,8 @@ const CartPage = () => {
    </div>
    {/* EXPLORE MENU */}
 <ExpMenu/>
+{/* REVIEW PAYEMENT */}
+<ReviewPayment/>
 </>
  
   )
