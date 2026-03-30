@@ -6,6 +6,7 @@ import Image from "../components/cartpage/Image";
 import ProductDes from "../components/cartpage/ProductDes";
 import ProdEditing from "../components/cartpage/ProdEditing";
 import { Link } from "react-router";
+import ExpMenu from "../components/cartpage/ExpMenu";
 const CartPage = () => {
     const {cart}=useContext(CartContext)!;
     // cart empty condition
@@ -17,6 +18,8 @@ const CartPage = () => {
   )
 }
   return (
+    <>
+    {/* CART ITEMS */}
      <div className="space-y-4 mt-4">
    {cart.map((product)=>(
 
@@ -31,8 +34,10 @@ const CartPage = () => {
  ))}
     
    </div>
-
-
+   {/* EXPLORE MENU */}
+<ExpMenu/>
+</>
+ 
   )
 }
 
